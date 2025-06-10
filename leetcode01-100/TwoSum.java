@@ -6,6 +6,7 @@
  * you may not use the same element twice
  * you may return the answer in any order
  */
+import java.util.*;
 
 public class TwoSum{
 
@@ -32,6 +33,27 @@ public class TwoSum{
     }
 
 
+    /**
+     * Using hashmap
+     */
+    public int[] returnIndicesHashMap(int[] nums, int target){
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int i = 0; i < nums.length; ++i){
+            int x = nums[i];
+            int y = target - x;
+            if(map.containsKey(y)){
+                int[] result = {map.get(y), i};
+                return result;
+            }
+            map.put(x, i);
+
+        }
+
+        return new int[] {-1};
+    }
+
+
     public static void main(String[] args){
         int target = 10;
         int[] array = {1, 2, 3, 4, 6};
@@ -39,6 +61,13 @@ public class TwoSum{
         TwoSum obj = new TwoSum();
         int[] indices = obj.returnIndices(array, target);
 
+        for(int i : indices){
+            System.out.println(i);
+        }
+
+        System.out.println();
+
+        indices = obj.returnIndicesHashMap(array, target);
         for(int i : indices){
             System.out.println(i);
         }
